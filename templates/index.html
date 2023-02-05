@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Animal Picker</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="HackViolet 2023 program that has user input a picture of themselves and their favorite animal. Program searches for corresponding animal that best matches their emotion.">
+	<meta charset="UTF-8">
+<style>
+.navbar {
+  overflow: hidden;
+  background-color: "white";
+}
+.navbar a {
+  float: right;
+  color: "white";
+  text-align: center;
+  padding: 0.5em;
+  text-decoration: none;
+  font-size: 17px;
+}
+.navbar a:hover {
+  background-color: "white";
+  color: black;
+}
+.navbar a.active {
+  background-color: "white";
+  color: "white";
+}
+input[type=text], select {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=submit] {
+  width: 10%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+div {
+  border-radius: 5px;
+  background-color: "white";
+  padding: 20px;
+}
+</style>
+</head>
+<!-- navigation bar -->
+<body>
+<div class="navbar">
+	<a href="animalpicker.tech/about" style="color:#000000">About<a/>
+	<a class="active" href="animalpicker.tech" style="color:#000000">Home</a>
+</div>
+
+<p align="center" style="padding-top:10em; margin-bottom:2em"><font size="24px">What is your favorite animal?</font></p>
+	
+<form action="{{ url_for('home') }}" enctype="multipart/form-data" method="POST">
+	<label for="firstname">Favorite Animal: </label>
+	<input type="text" required id="animalName" name="aName" placeholder="Favorite Animal">
+    <input name="img" type="file" required />
+    <input type="submit"/>
+	
+</form>
+
+<div style="text-align:center;"
+
+{% if foundImage %}
+<h1><img src={{url_for('static', filename='000001.jpg')}} 
+  width="500" 
+  height="500"/>
+</h1>
+{% else %}
+<h1>Image Not Found</h1>
+{% endif %}
+
+</div>
+
+<h1> Description </h1>
+<p> Interesting Facts: {{description}}</p>
+
+</body>
+</html>
